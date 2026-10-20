@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+</head>
+
+<body style="background-color: darkgreen; color: white;">
+    <h4>Register Form</h4>
+    <label>First Name:</label>
+    <input type="text" name="" placeholder="First Name" id="firstName"> <br><br>
+
+    <label>Last Name:</label>
+    <input type="text" name="" placeholder="Last Name" id="lastName" oninput="GetClick()"> <br><br>
+
+    <label>Full Name:</label>
+    <input type="text" name="" placeholder="Full Name" id="fullName" oninput="GetClick()"> <br><br><br><br>
+
+    <label>Gender:</label>
+    <select id="gender">
+        <option>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select> <br><br>
+
+    <label>DOB</label>
+    <input type="date" name="" id="DOB"> <br><br>
+
+    <label>Address</label>
+    <textarea id="address"></textarea> <br><br>
+
+    <label>Subject</label>
+    <select id="subject">
+        <option>Select Subject</option>
+        <option>Software</option>
+        <option>Multi Media</option>
+        <option>Network</option>
+    </select> <br><br>
+
+    <p>Class Study</p>
+    <label>Online</label>
+    <input type="radio" name="Radio" id="Radio1" onclick="SelectRadio('Radio1')">
+
+    <label>On Campus</label>
+    <input type="radio" name="Radio" id="Radio2" onclick="SelectRadio('Radio2')">
+    <br><br>
+
+
+    <button onclick="Register()" style="background-color: blue; color: white;">Register</button>
+
+    <p id="Form">Click "Register" button to see all details!</p>
+
+</body>
+</html>
+
+
+<script>
+    document.addEventListener("input", function(){
+        const fname = document.getElementById("firstName").value;
+        const lname = document.getElementById("lastName").value;
+        document.getElementById("fullName").value = fname + " " + lname;
+    })
+
+    function SelectRadio(select) {
+        const radio1 = document.getElementById('Radio1');
+        const radio2 = document.getElementById('Radio2');
+        if (select == "Radio1") {
+            radio2.checked = false;
+        } else if (select == "Radio2") {
+            radio1.checked = false;
+        }
+    }
+
+    function Register(){
+        var fullname = document.getElementById("fullName").value;
+        var gender = document.getElementById("gender").value;
+        var DOB = document.getElementById("DOB").value;
+        var address = document.getElementById("address").value;
+        var subject = document.getElementById("subject").value;
+        var radio1 = document.getElementById("Radio1").checked;
+        var radio2 = document.getElementById("Radio2").checked;
+
+        document.getElementById("Form").innerHTML = 
+            "Here is your register details: " + "<br>" + 
+            "Full Name: " + fullname + "<br>" + 
+            "Gender: " + gender + "<br>" + 
+            "Date of Birth: " + DOB + "<br>" + 
+            "Address: " + address + "<br>" + 
+            "Subject: " + subject + "<br>" + 
+            "Class Study: " + (radio1 ? "Online" : radio2 ? "On Campus" : "Not Selected");
+
+    }
+
+</script>
